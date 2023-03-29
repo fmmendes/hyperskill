@@ -64,7 +64,7 @@ fun chooseSeat() {
 fun menu() {
     var option: Int
     do {
-        println("\n1. Show the seats\n2. Buy a ticket\n0. Exit")
+        println("\n1. Show the seats\n2. Buy a ticket\n3. Statistics\n0. Exit")
         option = readln().toInt()
 
         if (option == 1) {
