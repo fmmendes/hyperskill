@@ -1,114 +1,48 @@
-<h2>Introduction to MutableList</h2>
-<p>In previous topics, you learned how to declare variables to store and manipulate data. But what can we do if we want to save and process not one single value but multiple data of the same type? In such cases, we resort to using a list, which allows us to process multiple values of the same type as a single unit. In this topic, we will see what <code class="language-kotlin">MutableList</code> is and how we can use it to store and manipulate data. It is convenient in cases when you don't know exactly how many elements the program will process during its runtime.</p>
-<h5 id="introduction-to-mutablelist">Introduction to MutableList</h5>
-<p>The Kotlin Standard Library provides many ways to organize data and to group multiple values. Now we will consider one of them – the <strong>MutableList</strong>.</p>
-<p><code class="language-kotlin">MutableList</code> is an ordered list of variables of the same type. You can access the list items by their indexes.</p>
-<pre><code class="language-kotlin">val numbers = mutableListOf(10.8, 14.3, 13.5, 12.1, 9.7) 
-
-println(numbers) // [10.8, 14.3, 13.5, 12.1, 9.7]</code></pre>
-<p>The picture below illustrates a mutable list of five floating-point numbers. Each element has an integer index (<code class="language-kotlin">0-4</code>), so you can access an element by referring to its index. The first element always has the index <code class="language-kotlin">0</code>, and the last element has the index that equals the list size minus one. </p>
-<p><img alt="" height="445" src="https://ucarecdn.com/9e6fb36e-293b-4fce-99e5-430e520d0783/" width="1442"/> <strong>A mutable list of five floating-point elements</strong></p>
-<h5 id="creating-a-mutablelist-with-specified-elements">Creating a MutableList with specified elements</h5>
-<p>In Kotlin, the <strong>mutableListOf()</strong> function is used to create an object of the MutableList class.</p>
-<p>Kotlin can handle any types of MutableList you want: for example, <code class="language-kotlin">Int</code>, <code class="language-kotlin">Long</code>, <code class="language-kotlin">Double</code>, <code class="language-kotlin">Float</code>, <code class="language-kotlin">Char</code>, <code class="language-kotlin">String</code>, <code class="language-kotlin">Byte</code>, or <code class="language-kotlin">Boolean</code>.</p>
-<p>Here is an example of creating a mutable list in cases when we know the content type. In angle brackets <code class="language-kotlin">&lt;&gt;</code>, you may specify the type of data that will be stored in the list. You will learn more about <code class="language-kotlin">&lt;&gt;</code> in the following topics.</p>
-<pre><code class="language-kotlin">//declaring a mutable list of integers
-val mutableListA = mutableListOf&lt;Int&gt;(1, 2, 3, 4, 3)
-println(mutableListA)
-  
-//declaring a mutable list of strings
-val mutableListB = mutableListOf&lt;String&gt;("Kotlin", "JetBrains")
-println(mutableListB)
-  
-//declaring an empty mutable list of booleans
-val mutableListC = mutableListOf&lt;Boolean&gt;()
-println("Empty list $mutableListC")</code></pre>
-<p>The above code snippet prints three lists:</p>
-<pre><code class="language-no-highlight">[1, 2, 3, 4, 3]
-[Kotlin, JetBrains]
-Empty list []</code></pre>
-<p>Also, Kotlin allows you to not explicitly specify what type of data the list stores:</p>
-<pre><code class="language-kotlin">//declaring a mutable list of integers
-val mutableListA = mutableListOf(1, 2, 3, 4, 5)
-
-println(mutableListA) // [1, 2, 3, 4, 5]</code></pre>
-<h5 id="mutablelist-size">MutableList size</h5>
-<p>To create a mutable list of a specified size <code class="language-kotlin">n</code>, we use the <code class="language-kotlin">MutableList(n)</code> function:</p>
-<pre><code class="language-kotlin">val list = MutableList(5) { 0 }
-
-println(list) // [0, 0, 0, 0, 0]</code></pre>
-<p>In curly braces, we write the object that will make up our list. For example, if you specify "a", the list will contain 5 elements equal to "a": </p>
-<pre><code class="language-kotlin">val list = MutableList(5) { "a" }
-
-println(list) // [a, a, a, a, a]</code></pre>
-<p>A mutable list always has a specified size, that is, the number of elements. To obtain it, we need to take the value of the <code class="language-kotlin">size</code> property. It is a number of the <code class="language-kotlin">Int</code> type.</p>
-<pre><code class="language-kotlin">val numbers = mutableListOf&lt;Int&gt;(1, 2, 3, 4, 5)
-
-println(numbers.size) // 5 </code></pre>
-<h5 id="reading-list-from-input">Reading list from input</h5>
-<p>You don't need to figure out all the snippets right now, just use them as a template in your projects!</p>
-<p>To read a list of a certain size from the console, we first need to create a <code class="language-kotlin">MutableList</code> of some type with a known size. Inside the parentheses, we should place <code class="language-kotlin">readln()</code>, with the help of which we can read input from the console. The <code class="language-kotlin">readln()</code>  function returns a string, so don’t forget to convert the input string into the type of the created list.</p>
-<pre><code class="language-kotlin">val numbers = MutableList(5) { readln().toInt() } // on each line single numbers from 1 to 5
-println(numbers) // [1, 2, 3, 4, 5]</code></pre>
-<p>This code allows you to read 5 numbers, each number on a separate line.</p>
-<p>If you want to read a list in a single line, use the following approach. You can read the list with the readln() function. You’ll get a string, which you should split.</p>
-<pre><code class="language-kotlin">// here we have an input string "1 2 3 4 5"
-
-val numbers = readln().split(" ").map { it.toInt() }.toMutableList()
-println(numbers) // [1, 2, 3, 4, 5]</code></pre>
-<p>Let’s have a look at this code snippet. We read a string from input and then use <code class="language-kotlin">split()</code>. We divide our string into smaller ones by space, then we use the map function to convert every element to <code class="language-kotlin">Int</code>, and then we convert the result to <code class="language-kotlin">MutableList</code>. <a href="https://kotlinlang.org/docs/collection-transformations.html#map" rel="noopener noreferrer nofollow" target="_blank">Here</a> you can read more about mapping transformation.</p>
-<p>There is also a way that allows you to ignore line breaks and extra spaces in the input string. You can do this with the help of regular expressions, which are often used in text searching and editing.</p>
-<pre><code class="language-kotlin">val regex = "\\s+".toRegex()  // 1 or more whitespace character (space, tabs etc.)
-val str = "1 2\t\t3  4\t5  6"
-val nums = str.split(regex).map { it.toInt() }.toMutableList()
-println(nums.joinToString()) // 1, 2, 3, 4, 5, 6</code></pre>
-<p>With this regular expression, you can ignore spaces and tabs in the input string. You can learn more about regular expressions in our <a href="https://hyperskill.org/knowledge-map/1505" rel="noopener noreferrer nofollow" target="_blank">topics</a>.</p>
-<h5 id="accessing-elements">Accessing elements</h5>
-<p>You can change the values of mutable list elements. Use index to set a value in the list.</p>
-<p>Setting the value of an element using the element's index:</p>
-<pre><code class="language-kotlin">list[index] = elem</code></pre>
-<p>Getting the value of an element using the element's index:</p>
-<pre><code class="language-kotlin">val elem = list[index]</code></pre>
-<p>List indexes are numbers from <code class="language-kotlin">0</code> (the first element) to <code class="language-kotlin">list.size-1</code> (the last element).</p>
-<p>Here is an example of a three-element list of integers:</p>
-<pre><code class="language-kotlin">val numbers = mutableListOf(0, 0, 0) // numbers: 0, 0, 0
-
-numbers[0] = 1 // numbers: 1, 0, 0
-numbers[1] = 2 // numbers: 1, 2, 0
-numbers[2] = numbers[0] + numbers[1] // numbers: 1, 2, 3
-
-println(numbers[0]) // 1, the first element
-println(numbers[2]) // 3, the last element</code></pre>
-<p>Let's take a closer look at the code above. First, we have a list with three elements. All elements are equal to <code class="language-kotlin">0</code>. Then, the value of <code class="language-kotlin">1</code> is assigned to the first element of the list at the index <code class="language-kotlin">0</code>. Then, the value of <code class="language-kotlin">2</code> is assigned to the second element of the list at the index <code class="language-kotlin">1</code>. After that, the value of <code class="language-kotlin">3</code> (the sum of <code class="language-kotlin">1</code> and <code class="language-kotlin">2</code>) is assigned to the last element of the list at the index <code class="language-kotlin">2</code>. Then, we print the first and the last elements of the three-element list.</p>
-<p>If we try to access a nonexistent element by index, there will be an error in the program. Let's try to get the fourth element with the index <code class="language-kotlin">3</code> in the above <code class="language-kotlin">numbers</code> list:</p>
-<pre><code class="language-kotlin">val elem = numbers[3]</code></pre>
-<p>IDEA will issue a warning: "Index is always out of bounds," if you miss this warning, you will receive the exception "IndexOutOfBoundsException". You can learn more about the <a href="https://hyperskill.org/learn/step/7243" rel="noopener noreferrer nofollow" target="_blank">Exception</a> topic.</p>
-<p>As you already know, the last list element has an index equal to <code class="language-kotlin">list.size - 1</code>. Let's access the last element and the one before last:</p>
-<pre><code class="language-kotlin">val alphabet = mutableListOf('a', 'b', 'c', 'd')
-
-val last = alphabet[alphabet.size - 1]    // 'd'
-val prelast = alphabet[alphabet.size - 2] // 'c'</code></pre>
-<p>Kotlin provides several convenient ways to get the first and the last list elements as well as the last index in the list:</p>
-<pre><code class="language-kotlin">println(alphabet.first())   // 'a'
-println(alphabet.last())    // 'd'
-println(alphabet.lastIndex) // 3</code></pre>
-<p>Use this approach to make your code more readable and to avoid accessing nonexistent indexes.</p>
+<div class="step-text">
+<p>In Kotlin, a <code class="language-kotlin">MutableList</code> is a collection capable of holding a list of elements and allows modification of its contents. This implies that elements can be added, removed, or updated anytime. This stands in contrast to an <a class="theory-lookup not-relevant" href="/learn/step/14879" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, an immutable is a type of object or variable that, once initialized, cannot be changed. | This helps ensure the integrity of data and prevents unintended modifications. For example, a list of pages in a book may be an immutable collection, where the content cannot be altered over time. In contrast, a mutable collection allows for changes to be made, such as adding, removing, or updating stored items. Immutable variables, declared using the `val` keyword, are particularly useful for exposing internal state in a safe and controlled manner, as they cannot be modified by external code.">immutable</a> list, which does not permit changes after its creation.</p>
+<h5 id="key-differences">Key Differences:</h5>
+<ol><li><p><strong><a class="theory-lookup" href="/learn/step/17408" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, mutability refers to the ability of a variable or collection to be changed or modified after it has been declared and initialized. | A mutable variable is declared using the `var` keyword, which allows for reassignment of a new value to the variable. This is in contrast to an immutable variable, which is declared using the `val` keyword and cannot be changed once it has been initialized. Mutable collections, on the other hand, allow for operations that change the content of the collection by adding, removing, or updating the stored items.">Mutability</a></strong>:</p><ul><li><p><code class="language-kotlin">MutableList</code> lets you make changes after it's created.</p></li><li><p>The immutable list (for example, <code class="language-kotlin">listOf</code>) can only be read, not modified.</p></li></ul></li><li><p><strong>Functions</strong>:</p><ul><li><p><code class="language-kotlin">MutableList</code> includes functions such as <code class="language-kotlin">add</code>, <code class="language-kotlin">remove</code>, and <code class="language-kotlin">clear</code>.</p></li><li><p>These <a class="theory-lookup" href="/learn/step/4575" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a function is a sequence of instructions that performs a specific action, such as printing data to standard output or calculating a square root. | It is a named block of code that can be invoked from a program using its name followed by parentheses. If a function takes one or more arguments (input data), they should be passed in the parentheses. Functions can return a result that can be assigned to a variable. Some functions, like regular math functions, take arguments and produce a result.">functions</a> are not available for the immutable list.</p></li></ul></li></ol>
+<h5 id="common-operations-in-kotlins-mutablelist">Common Operations in Kotlin's MutableList</h5>
+<p>Kotlin's <code class="language-kotlin">MutableList</code> is a <a class="theory-lookup" href="/learn/step/14698" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a generic is a type parameter that is used in a class or function declaration to allow for the creation of reusable and abstract code. | By specifying a type parameter within angle brackets, you can create a generic class that can work with various data types without the need to duplicate code for each type. This is particularly useful when creating classes or functions that need to handle different data types but perform similar operations. The type parameter can be used in methods and properties of the class, and the actual type is determined when an object is created from the generic class.">generic</a> ordered collection of elements that supports adding, removing, and updating operations. Here are some of the common operations:</p>
+<ul><li><p><strong>add</strong>: Adds an element to the list.</p><pre><code class="language-kotlin">val list = mutableListOf(1, 2, 3)
+list.add(4) // list becomes [1, 2, 3, 4]</code></pre></li><li><p><strong>add at index</strong>: Inserts an element at a specified index.</p><pre><code class="language-kotlin">list.add(1, 5) // list becomes [1, 5, 2, 3, 4]</code></pre></li><li><p><strong>remove</strong>: Removes an element from the list.</p><pre><code class="language-kotlin">list.remove(5) // list becomes [1, 2, 3, 4]</code></pre></li><li><p><strong>removeAt</strong>: Removes an element at a specified index.</p><pre><code class="language-kotlin">list.removeAt(0) // list becomes [2, 3, 4]</code></pre></li><li><p><strong>set</strong>: Updates an element at a specified index.</p><pre><code class="language-kotlin">list.set(1, 10) // list becomes [2, 10, 4]</code></pre></li><li><p><strong>clear</strong>: Removes all elements from the list.</p><pre><code class="language-kotlin">list.clear() // list becomes []</code></pre></li></ul>
+<p>These operations allow for dynamic and flexible manipulation of collections in Kotlin, making <code class="language-kotlin">MutableList</code> a powerful tool for developers.</p>
+<h5 id="the-role-of-mutability-in-lists-and-when-to-utilize-mutablelist">The Role of Mutability in Lists and When to Utilize MutableList</h5>
+<p>Mutability in lists is a vital feature that enables dynamic alterations of the list's content. In Kotlin, a <code class="language-kotlin">MutableList</code> is an interface that expands the <code class="language-kotlin">List</code> interface, including methods that alter the list, like <code class="language-kotlin">add</code>, <code class="language-kotlin">remove</code>, and <code class="language-kotlin">clear</code>. Here's a demonstration of a <code class="language-kotlin">MutableList</code> at work:</p>
+<p><code class="language-kotlin">val mutableList = mutableListOf(1, 2, 3) mutableList.add(4) // The list now contains [1, 2, 3, 4]</code></p>
+<p>On the flipside, a <a class="theory-lookup" href="/learn/step/4371" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a read-only is a property that can only be read and not modified. | It is declared using the `val` keyword, which indicates that the property is immutable and can only be assigned a value once during initialization. This helps ensure the integrity of the data and prevent unintended modification. Additionally, read-only properties can be used to expose internal state in a safe and controlled manner, without allowing external code to modify it. This immutability offers protection against unintended alteration, making your code more error-prone and simpler to comprehend.">read-only</a> <code class="language-kotlin">List</code> in Kotlin does not permit such alterations:</p>
+<pre><code class="language-kotlin">val readOnlyList = listOf(1, 2, 3)
+// readOnlyList.add(4) // This would lead to a compilation error</code></pre>
+<p>You should utilize a <code class="language-kotlin">MutableList</code> when you anticipate the elements of your list to change over time. This is especially handy when dealing with a collection of items of unknown size initially, or when the list elements need frequent updates, additions, or removals according to the program logic.</p>
+<p>In contrast, pick a read-only <code class="language-kotlin">List</code> when you're working with a specific set of elements that shouldn't change. This immutability offers protection against unintended alterations, making your code less error-prone and simpler to comprehend.</p>
+<p>In summary, deciding between a mutable and read-only list in Kotlin depends on whether the list's content is expected to be altered post its creation. Choose <code class="language-kotlin">MutableList</code> when modifications are needed and a read-only <code class="language-kotlin">List</code> for stability and immutability.</p>
+<h5 id="iterating-over-a-mutablelist-in-kotlin">Iterating over a MutableList in Kotlin</h5>
+<p>A MutableList in Kotlin is a collection type that you can modify; you can add, remove, or update elements. Iterating over a <code class="language-kotlin">MutableList</code> and executing <a class="theory-lookup not-relevant" href="/learn/step/14879" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a batch operation refers to a type of operation that involves processing multiple items or data elements in a single operation, particularly in the context of reactive programming with flows. | Batch operations are useful for improving the performance and efficiency of processing large amounts of data by reducing the overhead of individual operations. In the context of threading, batch operations can help avoid thread interference by ensuring that multiple threads do not modify shared data simultaneously. By processing data in batches, threads can operate on separate portions of data without interfering with each other. In the context of flows, batch operations can be used to process data in chunks or batches, allowing for more efficient processing and better handling of backpressure. Flows can be configured to emit data in batches, allowing downstream operations to process multiple elements at once.">batch operations</a> are typical tasks in Kotlin programming.</p>
+<h5 id="iteration">Iteration</h5>
+<p>You can use a <code class="language-kotlin">for</code> loop to go through a <code class="language-kotlin">MutableList</code>:</p>
+<pre><code class="language-kotlin">val mutableList = mutableListOf("apple", "banana", "cherry")
+for (item in mutableList) {
+    println(item)
+}</code></pre>
+<p>You also have the option to use the <code class="language-kotlin">forEach</code> method:</p>
+<pre><code class="language-kotlin">mutableList.forEach { item -&gt;
+    println(item)
+}</code></pre>
+<h5 id="batch-operations">Batch Operations</h5>
+<p>You can perform batch operations using functions like <code class="language-kotlin">map</code>, <code class="language-kotlin">filter</code>, and <code class="language-kotlin">forEach</code>.</p>
+<pre><code class="language-kotlin">val lengths = mutableList.map { it.length }</code></pre>
+<pre><code class="language-kotlin">val longFruits = mutableList.filter { it.length &gt; 5 }</code></pre>
+<pre><code class="language-kotlin">mutableList.forEach { println(it.toUpperCase()) }</code></pre>
+<ul><li><p>The <code class="language-kotlin">map</code> function modifies each element:</p></li><li><p>The <code class="language-kotlin">filter</code> function retains elements that fulfill a condition:</p></li><li><p>The <code class="language-kotlin">forEach</code> function carries out an action on each element:</p></li></ul>
+<h5 id="modifying-lists">Modifying Lists</h5>
+<p>You can modify elements in a batch using <code class="language-kotlin">replaceAll</code>. This requires API level 24 or higher on Android:</p>
+<pre><code class="language-kotlin">mutableList.replaceAll { it.toUpperCase() }</code></pre>
+<p>If you are using earlier <a class="theory-lookup not-relevant" href="/learn/step/14879" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a version refers to a specific release or iteration of the programming language that has been developed and made available for use. | It is represented by a number or a string that indicates the level of improvements, bug fixes, or new features introduced in that version compared to the previous ones. For instance, Kotlin 1.4.20 is a version that follows Kotlin 1.4.10, and it may contain enhancements, corrections, or additional functionalities that were not present in the earlier version.">versions</a> of Android or Kotlin, a combination of <code class="language-kotlin">map</code>, <code class="language-kotlin">clear</code>, and <code class="language-kotlin">addAll</code> will work:</p>
+<pre><code class="language-kotlin">val upperCaseList = mutableList.map { it.toUpperCase() }
+mutableList.clear()
+mutableList.addAll(upperCaseList)</code></pre>
+<p>Keep in mind, batch operations like <code class="language-kotlin">map</code> and <code class="language-kotlin">filter</code> that transform the list, yield a new list; they don't change the original <code class="language-kotlin">MutableList</code>.</p>
+<p>Kotlin provides excellent tools to work with <code class="language-kotlin">MutableList</code>, simplifying tasks like iterating over the list and carrying out batch operations efficiently.</p>
 <h5 id="conclusion">Conclusion</h5>
-<p>In this topic, we have discussed the concept of a mutable list and the basic operations with it. Please, remember that:</p>
-<ul>
-<li>
-<p>A mutable list is a data structure of elements that can be accessed by index;</p>
-</li>
-<li>
-<p>The first element of a list has the index <code class="language-kotlin">0</code>;</p>
-</li>
-<li>
-<p>A mutable list always has a specified size;</p>
-</li>
-<li>
-<p>It is possible to modify an element of a list using the element's index;</p>
-</li>
-<li>
-<p>Kotlin can handle lists of different types: <code class="language-kotlin">Int</code>, <code class="language-kotlin">Char</code>, <code class="language-kotlin">Double</code>, and so on.</p>
-</li>
-</ul>
+<p>The MutableList in Kotlin is a dynamic and flexible collection type that gives you the ability to change the list's contents after it's been created. This makes it a perfect choice for situations where the size and elements of the list may change during a program's execution. With helpful functions like <code class="language-kotlin">add</code>, <code class="language-kotlin">remove</code>, <code class="language-kotlin">set</code>, and <code class="language-kotlin">clear</code>, you have the capability to adjust lists according to your requirements.</p>
+</div>

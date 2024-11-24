@@ -1,5 +1,5 @@
-<h2>For loop and lists</h2>
-<p>In Kotlin, the <code class="language-kotlin">for</code> loop is a handy tool that allows you to iterate through an entire mutable list. Let's take a look at several ways of using it.</p>
+<div class="step-text">
+<p>In Kotlin, the <code class="language-kotlin">for</code> loop is a handy tool that allows you to iterate through an entire <a class="theory-lookup not-relevant" href="/learn/step/15022" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, a mutable list is a dynamic and flexible collection type that allows you to change its content after creation. | This makes it suitable for situations where the size and elements of the list may change during a program's execution. You can add or replace elements using functions like `add()` and `set()`, and remove elements using functions like `remove()` and `removeAt()`. Iterating through the elements can be done using functions like `forEach()`. In contrast, use an immutable list when working with a specific set of elements that should not change, as it offers protection against unintended alteration, making your code more reliable and easier to understand. The choice between a mutable and read-only list depends on whether the list's content is expected to be altered post-creation.">mutable list</a>. Let's take a look at several ways of using it.</p>
 <h5 id="iterating-through-a-mutablelist" style="text-align: center;">Iterating through a MutableList</h5>
 <p>The simplest way to process each mutable list element is to use the following template:</p>
 <pre><code class="language-kotlin">for (element in mutList) {
@@ -69,7 +69,7 @@ Sat
 3: Wed
 4: Thur
 5: Fri </code></pre>
-<p>If you want to iterate through a mutable list in reverse order, use <code class="language-kotlin">downTo</code> in a range. You can also specify the offset between indexes using <code class="language-kotlin">step</code>.</p>
+<p>If you want to iterate through a mutable list in <a class="theory-lookup not-relevant" href="/learn/step/15022" rel="noopener noreferrer nofollow" target="_blank" title="In Kotlin, reverse order refers to the process of sorting the elements of a collection in descending order, based on their natural order or a custom ordering method. | This can be achieved using the `reversed()` function, which returns a copy of the original collection in reverse index order, or the `reversed()` method, which returns a reference to the original collection in reverse index order. The latter does not create a new copy, but it may reflect changes made to the original collection. When working with mutable collections, one must be cautious while using the `reversed()` method to avoid unintended consequences.">reverse order</a>, use <code class="language-kotlin">downTo</code> in a range. You can also specify the offset between indexes using <code class="language-kotlin">step</code>.</p>
 <p>The program below will print days in reverse order with a step of 2:</p>
 <pre><code class="language-kotlin">fun main() {
     val daysOfWeek = mutableListOf("Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat")
@@ -110,3 +110,4 @@ Sat
 <p>You can use this program as a template for your own solutions.</p>
 <h5 id="conclusion" style="text-align: center;">Conclusion</h5>
 <p>In this topic, we have discussed various ways to iterate through mutable lists with a <code class="language-kotlin">for</code>  loop in Kotlin: iterating through each list element, iterating by element indexes, and iterating by range indexes. In this light, Kotlin gives you a lot of freedom. Some applications can require reading mutable list elements from the input. Now you know how to do it, too. Ready to practice?</p>
+</div>

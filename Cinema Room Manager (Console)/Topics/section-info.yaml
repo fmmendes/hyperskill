@@ -1,9 +1,9 @@
 content:
-- Type conversion
-- Work with MutableLists
-- String formatting
-- For loop and lists
-- For loop and ranges
-- Multi-dimensional list
-- Introduction to MutableList
-- When expression
+  - Type conversion
+  - Work with MutableLists
+  - String formatting
+  - For loop and lists
+  - For loop and ranges
+  - Multi-dimensional list
+  - Introduction to MutableList
+  - When expression
